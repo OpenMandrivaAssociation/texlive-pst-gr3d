@@ -6,7 +6,7 @@
 # catalog-version 1.34
 Name:		texlive-pst-gr3d
 Version:	1.34
-Release:	1
+Release:	2
 Summary:	Three dimensional grids with PSTricks
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/graphics/pstricks/contrib/pst-gr3d

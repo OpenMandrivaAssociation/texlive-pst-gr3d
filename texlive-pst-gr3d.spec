@@ -1,49 +1,22 @@
-Name:		texlive-pst-gr3d
-Version:	15878
-Release:	2
+%global tl_name pst-gr3d
+%global tl_revision 15878
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.34
+Release:	%{tl_revision}.1
 Summary:	Three dimensional grids with PSTricks
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/graphics/pstricks/contrib/pst-gr3d
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/pst-gr3d.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/pst-gr3d.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/pst-gr3d.source.r%{version}.tar.xz
+License:	lppl
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/pst-gr3d.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/pst-gr3d.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/pst-gr3d.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This PSTricks package provides a command \PstGridThreeD that
-will draw a three dimensional grid, offering a number of
-options for its appearance.
+This PSTricks package provides a command \PstGridThreeD that will draw a
+three dimensional grid, offering a number of options for its appearance.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/generic/pst-gr3d/pst-gr3d.tex
-%{_texmfdistdir}/tex/latex/pst-gr3d/pst-gr3d.sty
-%doc %{_texmfdistdir}/doc/generic/pst-gr3d/Changes
-%doc %{_texmfdistdir}/doc/generic/pst-gr3d/README
-%doc %{_texmfdistdir}/doc/generic/pst-gr3d/pst-gr3d.pdf
-#- source
-%doc %{_texmfdistdir}/source/latex/pst-gr3d/pst-gr3d.dtx
-%doc %{_texmfdistdir}/source/latex/pst-gr3d/pst-gr3d.ins
-
-#-----------------------------------------------------------------------
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
